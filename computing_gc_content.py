@@ -12,7 +12,7 @@ for line in fastaFile:
 		fastaDict[fastaLabel] = " "
 	else : 
 		fastaDict[fastaLabel] += line.strip()
-print(fastaDict)
+
 #compute GC content 
 def find_GC(seq):
 	return ((seq.count("G") + seq.count("C"))/ (len(seq)-1)*100)

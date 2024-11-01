@@ -1,32 +1,3 @@
-#Need to clean up the organization on this code
-with open("/Users/melissanolan/Downloads/rosalind_splc.txt") as file:
-    fasta= file.readlines() #this is a list line-by-line
-
-fastaDic = {}
-fastaName = ""
-for line in fasta:
-    if ">" in line:
-        fastaName = line.strip()
-        fastaDic[fastaName] = ""
-    else:
-        fastaDic[fastaName] += line.strip()
-
-fastaLis = list(fastaDic.values())
- #this is a list of all sequences
-DNA= max(fastaLis, key =len)
-print(len(DNA))
-fastaLis.remove(DNA)
-
-for intron in fastaLis:
-    print(len(intron))
-    DNA = DNA.replace(intron, "")
-    print(len(DNA))
-#its not removing all of the introns
-print(len(DNA))
-#translation
-
-ex_RNA = DNA.replace("T", "U")
-
 data = """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
 UUA L      CUA L      AUA I      GUA V
@@ -44,6 +15,7 @@ UGC C      CGC R      AGC S      GGC G
 UGA Stop   CGA R      AGA R      GGA G
 UGG W      CGG R      AGG R      GGG G"""
 
+#Create Codon Dictionary
 dataList = data.split()
 codonDict = {}
 for data in dataList:
@@ -52,13 +24,42 @@ for data in dataList:
 		codonDict[codonName] = " "
 	else:
 		codonDict[codonName] = data
+            
+#Read FASTA document
+with open("/Users/melissanolan/Downloads/rosalind_splc.txt") as file:
+    fasta= file.readlines() 
 
+#Create a dictionary of names and sequences
+fastaDic = {}
+fastaName = ""
+for line in fasta:
+    if ">" in line:
+        fastaName = line.strip()
+        fastaDic[fastaName] = ""
+    else:
+        fastaDic[fastaName] += line.strip()
+
+fastaLis = list(fastaDic.values())
+
+#Find the reference sequence and remove it from our list, remains are introns
+DNA= max(fastaLis, key =len)
+fastaLis.remove(DNA)
+
+for intron in fastaLis:
+    DNA = DNA.replace(intron, "")
+
+#Find the RNA that will be translated after introns removed
+ex_RNA = DNA.replace("T", "U")
+
+#Create a list of codons read from RNA sequence
 codons = [ ]
 for base in range(len(ex_RNA)):
-	if (base+1)%3 == 0:
+	if (base + 1) % 3 == 0:
 		new_codon = ex_RNA[(base-2):(base+1)]
 		codons.append(new_codon)
 
+#Iterate through codons and find the amino acid code
 AA_list = [codonDict[i] for i in codons]
-AA_final = "".join(AA_list)
+AA_final = "".join(AA_list).replace("Stop", "")
+
 print(AA_final)

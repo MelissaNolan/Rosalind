@@ -19,10 +19,10 @@ V   99.06841
 W   186.07931
 Y   163.06333 """
 
-
+#Create a dictionary of AA masses
 mass_list = mass.split()
 mass_dict = {}
-AA_name=""
+AA_name = ""
 for s in mass_list:
     if len(s) == 1:
         AA_name = s
@@ -30,20 +30,18 @@ for s in mass_list:
     else:
         mass_dict[AA_name] = float(s.strip())
 
-        
+#Open file with AA sequence      
 with open("/Users/melissanolan/Downloads/rosalind_prtm.txt") as file:
-    pro= file.read()
+    pro = file.read()
 
-pro = pro.strip()
+pro_tup = tuple(pro.strip())
 
-pro_tup = tuple(pro)
-
+#Add the mass values for each amino acid in sequence
 sum = 0
 for val in pro_tup:
     if val in mass_dict.keys():
         sum += mass_dict[val]
     else:
         print("Error: key not found in dictionary")
-
 print(sum)
 

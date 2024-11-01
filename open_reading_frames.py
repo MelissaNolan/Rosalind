@@ -1,14 +1,14 @@
 
-#Iterate through every possible codon and translate
+#Iterate through every possible codon, initiate if M, and translate until Stop
 def translation(mRNA):
     prot_chains = []
     codon = ""
     prot= ""
     for i in range(len(mRNA)-2):
         codon = mRNA[i:i+3]
-        if codonDict[codon] == "M": #if M is present, exeecute this
-            prot += codonDict[codon] #make sure M is added to protein
-            j = i+3 #create new variable just for when M is initially present
+        if codonDict[codon] == "M": 
+            prot += codonDict[codon] 
+            j = i+3 
             while j< (len(mRNA)-3): 
                 codon = mRNA[j:j+3] 
                 prot+= codonDict[codon]
@@ -20,6 +20,7 @@ def translation(mRNA):
                 j+=3 
     return prot_chains
 
+#Find complementary strand
 def complement(strand):
     com=""
     for base in strand:
@@ -33,12 +34,13 @@ def complement(strand):
             com += "C"
     return com
 
+#transcribe
 def transcription(strand):
     RNA=""
     RNA = strand.replace("T", "U")
     return RNA
-#create codon dictionary
-    
+
+#Codon dictionary data   
 data = ( 
 """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -57,6 +59,7 @@ UGC C      CGC R      AGC S      GGC G
 UGA Stop   CGA R      AGA R      GGA G
 UGG W      CGG R      AGG R      GGG G""")
 
+#Create codon dictionary
 dataList = data.split()
 codonDict = {}
 for data in dataList:
@@ -66,11 +69,10 @@ for data in dataList:
 	else:
 		codonDict[codonName] = data
      
-#open fasta file and ass data to list
-
+#Open data file containing title of DNA string and sequence
 with open("/Users/melissanolan/Downloads/rosalind_orf.txt") as file:
     fastaLis=file.readlines()
- #list of sequences
+
 newLis=[]
 s=""
 for line in fastaLis:
@@ -81,17 +83,16 @@ for line in fastaLis:
         s=line
         newLis.append(s)
 
+DNA = "".join(newLis) 
 
-DNA = "".join(newLis) #string of sequence
-
-
+#find reversed DNA strand, transcribe, do the same with original strand
 rev_DNA = DNA[::-1]
-
 rev_DNA = complement(rev_DNA)
-rev_DNA=transcription(rev_DNA)
+rev_DNA = transcription(rev_DNA)
 
-DNA=transcription(DNA)
+DNA = transcription(DNA)
 
+#add the lists of every possible translation product for reverse and forward strand
 final_list = translation(DNA) + translation(rev_DNA)
 final_list = list(set(final_list))
 for item in final_list:

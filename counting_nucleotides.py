@@ -1,10 +1,11 @@
 file = open("/Users/melissanolan/Downloads/rosalind_dna.txt")
-DNA = str(file.read())
+DNA = file.read()
 #Counts number of times A, T, C, G occur in given DNA sequence
 A = 0
 T = 0
 C = 0
 G = 0
+
 for nuc in DNA:
     if nuc == "A":
         A += 1
