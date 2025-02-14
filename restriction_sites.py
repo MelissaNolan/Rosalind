@@ -11,22 +11,34 @@ def complement(strand):
             com += "C"
     return com
 
-with open() as file:
-    data= file.readlines()
+with open("/Users/melissanolan/Downloads/rosalind_revp.txt") as file:
+   data= file.readlines()
 
-DNA=""
+DNA = ""
 for line in data:
     if ">"in line:
         continue
     else:
-        DNA+= line.strip()
+        DNA += line.strip()
 
-comp_DNA=complement(DNA[::-1])
-???
+matchesIndex = []
+matchesLength = []
+comp_DNA=complement(DNA)
 
-counter=1
-matches=[]
-for i in range (len(DNA)-1):
-    site=[i:counter]
-    if DNA[i:counter] in comp_DNA and 12>len(DNA[i:counter])>4:
-        matches.append(DNA[i:counter])
+counter = 1
+
+for i in range(len(DNA)) :
+    for j in range(i + 3 , i + 13) :
+        if j > (len(DNA)) :
+          #  print(i)
+            break
+        elif DNA[i:j] == comp_DNA[j:i:-1] :
+            matchesIndex.append(i + 1)
+            matchesLength.append(len(DNA[i:j]) + 1)
+
+res = list(zip(matchesIndex , matchesLength))
+
+for tuple in res:
+    for item in tuple:
+        print(item, end = " ")
+    print("\n")
