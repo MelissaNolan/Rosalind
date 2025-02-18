@@ -1,7 +1,10 @@
+#Solution to Rosalind problem "Consensus and Profile" https://rosalind.info/problems/cons/
+
 with open("/Users/melissanolan/Downloads/rosalind_cons-3.txt") as file:
     data=file.readlines()
 
 #Create a list of sequences
+
 matrix=[]
 s=""
 for a in data:
@@ -15,13 +18,14 @@ for a in data:
 if s:   #add last sequence
     matrix.append(list(s)) 
 
-columns=len(matrix[0])
-rows=len(matrix)
+#Columns is the length of individual sequence and rows is how many DNA sequences there are
 
-#print(columns, rows) 
+columns = len(matrix[0])
+rows = len(matrix)
 
 A, T, C, G = [], [], [], []
 
+#read one index at a time in each sequence, record frequency of each nuc once the final sequence is reached
 
 for i in range(columns):
     a=t=c=g=0
@@ -38,6 +42,9 @@ for i in range(columns):
     T.append(t)
     C.append(c)
     G.append(g)
+
+#resolve any equalities in frequencies of nucleotides
+#create consensus string
 
 consensus=""
 for k in range(columns):
@@ -56,6 +63,3 @@ print("A:", (" ".join(str(x) for x in A)), " ")
 print("C:", (" ".join(str(x) for x in C)), " ")
 print("G:", (" ".join(str(x) for x in G)), " ")
 print("T:", (" ".join(str(x) for x in T)))
-
-#print(len(consensus))
-#print(columns)
