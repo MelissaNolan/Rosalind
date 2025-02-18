@@ -1,3 +1,5 @@
+#Solution to Rosalind "Counting Point Mutations" https://rosalind.info/problems/hamm/
+
 with open ("/Users/melissanolan/Downloads/rosalind_hamm.txt") as fasta:
 	string1 = fasta.readline()
 	string2 = fasta.readline()
