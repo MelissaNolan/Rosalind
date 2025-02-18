@@ -1,3 +1,5 @@
+#Solution to Rosalind problem "RNA Splicing" https://rosalind.info/problems/splc/
+
 data = """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
 UUA L      CUA L      AUA I      GUA V
@@ -29,7 +31,7 @@ for data in dataList:
 with open("/Users/melissanolan/Downloads/rosalind_splc.txt") as file:
     fasta= file.readlines() 
 
-#Create a dictionary of names and sequences
+#Create a dictionary of Fasta names and sequences
 fastaDic = {}
 fastaName = ""
 for line in fasta:
