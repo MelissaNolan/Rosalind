@@ -1,5 +1,7 @@
+#Solution to Rosalind problem "Open Reading Frames" https://rosalind.info/problems/orf/
 
 #Iterate through every possible codon, initiate if M, and translate until Stop
+
 def translation(mRNA):
     prot_chains = []
     codon = ""
@@ -21,6 +23,7 @@ def translation(mRNA):
     return prot_chains
 
 #Find complementary strand
+
 def complement(strand):
     com=""
     for base in strand:
@@ -35,12 +38,14 @@ def complement(strand):
     return com
 
 #transcribe
+
 def transcription(strand):
     RNA=""
     RNA = strand.replace("T", "U")
     return RNA
 
-#Codon dictionary data   
+#Codon dictionary data  
+
 data = ( 
 """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -60,6 +65,7 @@ UGA Stop   CGA R      AGA R      GGA G
 UGG W      CGG R      AGG R      GGG G""")
 
 #Create codon dictionary
+
 dataList = data.split()
 codonDict = {}
 for data in dataList:
@@ -70,6 +76,7 @@ for data in dataList:
 		codonDict[codonName] = data
      
 #Open data file containing title of DNA string and sequence
+
 with open("/Users/melissanolan/Downloads/rosalind_orf.txt") as file:
     fastaLis=file.readlines()
 
@@ -86,6 +93,7 @@ for line in fastaLis:
 DNA = "".join(newLis) 
 
 #find reversed DNA strand, transcribe, do the same with original strand
+
 rev_DNA = DNA[::-1]
 rev_DNA = complement(rev_DNA)
 rev_DNA = transcription(rev_DNA)
@@ -93,6 +101,7 @@ rev_DNA = transcription(rev_DNA)
 DNA = transcription(DNA)
 
 #add the lists of every possible translation product for reverse and forward strand
+
 final_list = translation(DNA) + translation(rev_DNA)
 final_list = list(set(final_list))
 for item in final_list:
