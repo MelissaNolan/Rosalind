@@ -1,3 +1,5 @@
+#Solution to Rosalind problem "Translating RNA into Protein" https://rosalind.info/problems/prot/
+
 data = ( 
 """UUU F      CUU L      AUU I      GUU V
 UUC F      CUC L      AUC I      GUC V
@@ -15,6 +17,8 @@ UGU C      CGU R      AGU S      GGU G
 UGC C      CGC R      AGC S      GGC G
 UGA Stop   CGA R      AGA R      GGA G
 UGG W      CGG R      AGG R      GGG G""")
+
+#Create RNA codon dictionary
 
 dataList = data.split()
 codonDict = {}
