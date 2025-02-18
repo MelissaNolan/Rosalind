@@ -1,3 +1,5 @@
+#Solution to Rosalind problem "Locating Restriciton Sites" https://rosalind.info/problems/revp/
+
 def complement(strand):
     com=""
     for base in strand:
@@ -13,6 +15,8 @@ def complement(strand):
 
 with open("/Users/melissanolan/Downloads/rosalind_revp.txt") as file:
    data= file.readlines()
+    
+#define DNA sequence
 
 DNA = ""
 for line in data:
@@ -27,10 +31,11 @@ comp_DNA=complement(DNA)
 
 counter = 1
 
+#Create a sliding window to compare original strand and complement strand, record if theres restriciton site
+
 for i in range(len(DNA)) :
     for j in range(i + 3 , i + 13) :
         if j > (len(DNA)) :
-          #  print(i)
             break
         elif DNA[i:j] == comp_DNA[j:i:-1] :
             matchesIndex.append(i + 1)
@@ -38,6 +43,7 @@ for i in range(len(DNA)) :
 
 res = list(zip(matchesIndex , matchesLength))
 
+#Formatting solution of position and length of every palindrome 4<= length >= 12
 for tuple in res:
     for item in tuple:
         print(item, end = " ")
