@@ -1,6 +1,10 @@
+#Solution to Rosalind problem "Counting DNA Nucleotides" https://rosalind.info/problems/dna/
+
 file = open("/Users/melissanolan/Downloads/rosalind_dna.txt")
 DNA = file.read()
-#Counts number of times A, T, C, G occur in given DNA sequence
+
+#Count number of times A, T, C, G occur in given DNA sequence
+
 A = 0
 T = 0
 C = 0
