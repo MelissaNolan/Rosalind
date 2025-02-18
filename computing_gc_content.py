@@ -1,8 +1,8 @@
-
+#Solution to Rosalind problem "Computing GC Content" https://rosalind.info/problems/gc/
 
 with open("/Users/melissanolan/Downloads/rosalind_gc.txt") as fasta:
     fastaFile = fasta.readlines()
-#create a dictionary with title of sequence(name) then code as value(seq), if > is in it then we assign FastaLabel to that name and create a value for it in our dictionary
+#create a dictionary with title of sequence(name) then code as value(seq)
 
 fastaDict = {}
 fastaLabel=""
@@ -16,9 +16,11 @@ for line in fastaFile:
 #compute GC content 
 def find_GC(seq):
 	return ((seq.count("G") + seq.count("C"))/ (len(seq)-1)*100)
+	
 #len seq -1 due to leading whitespace in fastadict i can't get rid of
 
 #Create Results Dictionary 
+
 resultDict = {fastaLabel: find_GC(seq) for (fastaLabel, seq) in fastaDict.items()}
 greatest_gc = max(resultDict.values())
 
