@@ -1,10 +1,10 @@
-
-#Find the longest common substring 
+#Solution to Rosalind problem "Finding a Shared Motif" https://rosalind.info/problems/lcsm/
 
 with open("/Users/melissanolan/Downloads/rosalind_lcsm-3.txt") as file :
     data =  file.readlines()
 
 #Create list of sequences
+
 DNA = []
 seq=""
 for line in data:
@@ -15,8 +15,6 @@ for line in data:
         seq += line.strip()
 DNA.append(seq)
 DNA.pop(0)
-#print(DNA)
-
 
 reference = max(DNA, key = len)
 
@@ -25,7 +23,7 @@ DNA.remove(reference)
 substring = []
 
 #Move a window along reference DNA and record it if all items in the list of sequences
-#  contains it
+# contains it
 
 for i in range(len(reference)) :
     for j in range(1 , len(reference)) :
