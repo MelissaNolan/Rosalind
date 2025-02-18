@@ -1,3 +1,4 @@
+#Solution to Rosalind problem "Inferring mRNA from Protein" https://rosalind.info/problems/mrna/
 
 data = ( 
 """UUU F      CUU L      AUU I      GUU V
@@ -20,8 +21,10 @@ UGG W      CGG R      AGG R      GGG G""")
 #create a list of codons and list of amino acid letters
 
 dataList = data.split()
+
 codons=[]
 aminos=[]
+
 for data in dataList:
 	if len(data) == 3:
 		codons.append(data)
@@ -29,7 +32,8 @@ for data in dataList:
 		aminos.append(data)
 
 
-#read data file of Amino Acids
+#read data file of Amino Acids, create list of AAs
+
 with open ("/Users/melissanolan/Downloads/rosalind_mrna.txt") as data: 
    prot= data.read().strip()
 
@@ -37,10 +41,13 @@ prot=list(prot)
 prot.append("Stop")
 
 possible_strings =1
+
 #Count number of times an amino acid in seq is in the list derived from data
+
 for i in prot:
 	occs=aminos.count(i)
-	
 	possible_strings= possible_strings*occs 
 	
+# total number of different RNA strings from which the protein could have been translated, modulo 1,000,000	
+
 print(possible_strings %1000000)
