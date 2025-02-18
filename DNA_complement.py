@@ -1,3 +1,4 @@
+#Solution to Rosalind problem "Complementing a Strand of DNA" https://rosalind.info/problems/revc/
 
 file = open("/Users/melissanolan/Downloads/rosalind_revc.txt")
 DNA = file.read()
