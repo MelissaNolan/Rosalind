@@ -1,3 +1,5 @@
+#Solution to Rosalind problem "Transitions and Transversions" https://rosalind.info/problems/tran/
+
 def transitions(pair):
     if pair[0] == pair[1]:
         return False
