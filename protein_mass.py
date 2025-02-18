@@ -1,3 +1,5 @@
+#Solution to Rosalind problem "Calculating Protein Mass" https://rosalind.info/problems/prtm/
+
 mass = """A   71.03711
 C   103.00919
 D   115.02694
@@ -20,6 +22,7 @@ W   186.07931
 Y   163.06333 """
 
 #Create a dictionary of AA masses
+
 mass_list = mass.split()
 mass_dict = {}
 AA_name = ""
@@ -30,13 +33,15 @@ for s in mass_list:
     else:
         mass_dict[AA_name] = float(s.strip())
 
-#Open file with AA sequence      
+#Open file with AA sequence   
+
 with open("/Users/melissanolan/Downloads/rosalind_prtm.txt") as file:
     pro = file.read()
 
 pro_tup = tuple(pro.strip())
 
 #Add the mass values for each amino acid in sequence
+
 sum = 0
 for val in pro_tup:
     if val in mass_dict.keys():
