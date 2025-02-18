@@ -1,5 +1,10 @@
+#Solution to Rosalind problem "Finding a Spliced Motif" https://rosalind.info/problems/sseq/
+
 with open("/Users/melissanolan/Downloads/rosalind_sseq-3.txt") as file :
     data =  file.readlines()
+    
+#Create Fasta Dictionary with names, sequences
+
 fastaDict = {}
 fastaLabel = ""
 
@@ -10,9 +15,12 @@ for seq in data :
     else :
         fastaDict[fastaLabel] += seq.strip()
 
+#Find the main string and substring
+
 s = str(max(fastaDict.values(), key = len))
 t= str(min(fastaDict.values(), key = len))
 
+#Find the indices of s where t is a subsequence
 
 counter = 0
 indice = 0
